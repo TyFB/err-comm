@@ -5,8 +5,8 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
   // find all tags
-  Tags.findAll()
-    .then(dbTagsData => res.json(dbTagsData))
+  Tag.findAll()
+    .then(dbTagData => res.json(dbTagData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -15,17 +15,17 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
-  Tags.findOne({
+  Tag.findOne({
     where: {
       id: req.params.id
     }
   })
-    .then(dbTagsData => {
-      if (!dbTagsData) {
+    .then(dbTagData => {
+      if (!dbTagData) {
         res.status(404).json({ message: 'No tags found with this id' });
         return;
       }
-      res.json(dbTagsData);
+      res.json(dbTagData);
     })
       .catch(err => {
         console.log(err);
@@ -35,10 +35,10 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
-  Tags.create({
-    
+  Tag.create({
+
   })
-    .then(dbTagsData => res.json(dbTagsData))
+    .then(dbTagData => res.json(dbTagData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
